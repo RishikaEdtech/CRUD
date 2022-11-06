@@ -1,0 +1,101 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h1 style="color:white;">Student Details</h1>
+        <div  class="d-felx">
+            <button (click)=" clickAddStudent()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add Student</button>
+        </div>
+    </div>
+</nav>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Student ID</th>
+            <th scope="col">first Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Eamil ID</th>
+            <th scope="col">Mobile No:</th>
+            <th scope="col">DOB</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of studentData">
+            <td>{{row.id}}</td>
+            <td>{{row.firstname}}</td>
+            <td>{{row.lastname}}</td>
+            <td>{{row.email}}</td>
+            <td>{{row.mobile}}</td>
+            <td>{{row.dob}}</td>
+            <td>
+                <button  (click)="onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:aliceblue;" class="btn btn-info">Edit</button>
+                <button (click)="deleteStudent(row)" class="btn btn-danger mx-3">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Student details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+             <form  class="needs-validation " [formGroup]="formvalue">
+              <div class="mb-3">
+                  <label>First Name</label>
+                  <input type="text" formControlName="firstname" class="form-control" [ngClass]="{ 'is-invalid':  showAdd && showupdate && formvalue.controls['firstname'].errors }" />
+                  <div *ngIf="showAdd && showupdate && formvalue.controls['firstname'].errors" class="text-danger">
+                    <div *ngIf="formvalue.controls['firstname'].errors?.['required']">First Name is required</div>
+                  </div>
+              </div>
+              <div class="mb-3">
+                <label>Last Name</label>
+                <input type="text" formControlName="lastname" class="form-control" [ngClass]="{ 'is-invalid': showAdd && showupdate && formvalue.controls['lastname'].errors }" />
+                <div *ngIf="showAdd && showupdate && formvalue.controls['lastname'].errors" class="text-danger">
+                  <div *ngIf="formvalue.controls['lastname'].errors?.['required']">Last Name is required</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label>Email Id:</label>
+                <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': showAdd && showupdate && formvalue.controls['email'].errors }" />
+                <div *ngIf="showAdd && showupdate && formvalue.controls['email'].errors" class="text-danger">
+                  <div *ngIf="formvalue.controls['email'].errors?.['required']">Email is required</div>
+                  <div *ngIf="formvalue.controls['email'].errors?.['email']">Email is Invalid</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label>Mobile No:</label>
+                <input type="number" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': showAdd && showupdate && formvalue.controls['mobile'].errors }" />
+                <div *ngIf="showAdd && showupdate && formvalue.controls['mobile'].errors" class="text-danger">
+                  <div *ngIf="formvalue.controls['mobile'].errors?.['required']">Mobile No is required</div>
+                  <div *ngIf="formvalue.controls['mobile'].errors?.['minlength']">should be 10 numbers</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label>Date of Birth</label>
+                <input type="date" formControlName="dob" class="form-control" [ngClass]="{ 'is-invalid': showAdd && showupdate && formvalue.controls['dob'].errors }" />
+                <div *ngIf="showAdd && showupdate && formvalue.controls['dob'].errors" class="invalid-feedback">
+                    <div *ngIf="formvalue.controls['dob'].errors?.['required']">Date of Birth is required</div>
+                    <div *ngIf="formvalue.controls['dob'].errors?.['pattern']">Date of Birth must be a valid date in the format YYYY-MM-DD</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <button type="button" class="btn btn-primary">Submit</button>
+              </div>
+            </form> 
+            <div class="modal-footer">
+              <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" *ngIf="showAdd" (click)="postStudentDetails()" class="btn btn-primary">Add</button>
+              <button type="button" *ngIf="showupdate"(click)="updateStudentDetails()" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

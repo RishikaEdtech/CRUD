@@ -1,0 +1,23 @@
+<div class = "form">
+    <form [formGroup]="reactiveform">   
+       <h3>Login form</h3>
+         <div class="form-group">
+             <label>UserName</label>
+             <input class="form-control" email name = "ngModel" formControlName="username" value="" placeholder = "Email" required="true">
+             <pre></pre>
+             <span class = "errmsg" *ngIf="f['username'].getError('email')!=null">Invalid User Email</span>
+         </div>
+         <pre></pre>
+         <div class="form-group">
+             <label>Password</label>
+             <input class="form-control" type = "password" formControlName="password" placeholder="Password" required="true" pattern="">
+             <pre></pre>
+             <span class = "errmsg" *ngIf="f['password'].getError('pattern')!=null">Match the given format </span><br>
+             <span class = "errmsg" *ngIf="f['password'].getError('minlength')!=null">Password should be atleast 8 charecters</span>
+         </div>  
+         <pre></pre>
+         <div class="form-group">
+            <a routerLink="../home2"><button [disabled]= "reactiveform.invalid" (click) = "goToPage()">Login</button></a>
+         </div>       
+     </form>
+ </div> 

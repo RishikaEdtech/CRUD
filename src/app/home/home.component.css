@@ -1,0 +1,65 @@
+* {
+    position: relative;
+    height: 100%;
+    text-align: center;
+}
+.form {
+    display: block;
+    text-align: center;
+}
+form {
+    text-align: center;
+    padding: 50px;
+}
+h3 {
+    text-align: center;
+    color: brown;
+    padding: 5px;
+    
+}
+div {
+    text-align: center;
+    box-sizing: border-box;
+    padding: 5px;
+}
+.form-group {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    border-width: 2px;
+}
+label {
+    padding: 15px;
+}
+input[type="email"] {
+    width: 20%;
+    height: 20px;
+    padding: 3px;
+    box-sizing: border-box;
+}
+input[type="password"] {
+    width: 15%;
+    height: 20px;
+    padding: 3px;
+    box-sizing: border-box;
+}
+button {
+    text-align: center;
+    box-sizing: border-box;
+    padding: 5px;
+    cursor: pointer;
+}
+.form-group a {
+    box-sizing: border-box;
+    font-size: 20px;
+    padding: 5px;
+}
+.alert {
+    background-color: white;
+    color: red;
+}
+.errmsg {
+    color: red;
+}
